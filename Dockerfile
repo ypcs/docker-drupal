@@ -39,4 +39,4 @@ COPY drupal-permissions.sh /usr/local/sbin/drupal-permissions
 COPY drupal-setup.sh /usr/local/sbin/drupal-setup
 
 RUN \
-    /usr/local/sbin/drupal-download /optRUN echo "Source: https://github.com/ypcs/docker-drupal\nBuild date: $(date +%Y-%m-%d\ %H:%M:%S)" >/README
+    /usr/local/sbin/drupal-download /optRUN echo "Source: https://github.com/ypcs/docker-drupal\nBuild date: $(date --iso-8601=ns)" >/README
