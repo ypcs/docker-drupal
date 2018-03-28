@@ -3,12 +3,6 @@ FROM ypcs/php:7.0
 ARG VCS_REF
 LABEL org.label-schema.vcs-ref=$VCS_REF
 
-ENV DRUPAL_DATABASE_USER drupal
-ENV DRUPAL_DATABASE_PASSWORD drupal
-ENV DRUPAL_DATABASE_NAME drupal
-ENV DRUPAL_DATABASE_HOST drupal
-
-ENV DRUPAL_VERSION 7.x
 ENV DRUSH_VERSION 8.1.15
 ENV DRUSH_SHA256 6999d72e51577b1e20cfaec87152d9905b714f5812861692877b8424a4e2358a
 
@@ -40,7 +34,7 @@ COPY download.sh /usr/local/sbin/drupal-download
 COPY permissions.sh /usr/local/sbin/drupal-permissions
 COPY install.sh /usr/local/sbin/drupal-install
 
-RUN \
-    /usr/local/sbin/drupal-download /opt/drupal
-
 RUN echo "Source: https://github.com/ypcs/docker-drupal\nBuild date: $(date --iso-8601=ns)" >/README
+
+ENV DRUPAL_DATABASE_DSN mysql://drupal:drupal@db/drupal
+ENV DRUPAL_VERSION 7.x

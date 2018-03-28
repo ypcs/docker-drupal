@@ -1,23 +1,24 @@
 #!/bin/sh
 set -e
 
-DRUPAL_SITE="${DRUPAL_SITE:-Example Site}"
-DRUPAL_USERNAME="${DRUPAL_USERNAME:-admin}"
-DRUPAL_PASSWORD="${DRUPAL_PASSWORD:-admin}"
-DRUPAL_DATABASE_HOST="${DRUPAL_DATABASE_HOST:-db}"
-DRUPAL_DATABASE_NAME="${DRUPAL_DATABASE_NAME:-drupal}"
-DRUPAL_DATABASE_USER="${DRUPAL_DATABASE_USER:-drupal}"
-DRUPAL_DATABASE_PASSWORD="${DRUPAL_DATABASE_PASSWORD:-drupal}"
+TARGET="$1"
+[ -z "${TARGET}" ] && echo "missing target directory!" && exit 1
 
-DRUPAL_ROOT="${DRUPAL_ROOT:-${DOCUMENT_ROOT:-/var/www/html}}"
+# check that essential variables defined
+[ -z "${DRUPAL_SITE}" ] && echo "missing variable: \$DRUPAL_" && exit 1
+[ -z "${DRUPAL_USERNAME}" ] && echo "missing variable: \$DRUPAL_USERNAME" && exit 1
+[ -z "${DRUPAL_PASSWORD}" ] && echo "missing variable: \$DRUPAL_PASSWORD" && exit 1
+[ -z "${DRUPAL_DATABASE_DSN}" ] && echo "missing variable: \$DRUPAL_DATABASE_DSN" && exit 1
 
-if [ ! -f "${DRUPAL_ROOT}/install.php" ]
+
+
+if [ ! -f "${TARGET}/install.php" ]
 then
     echo "No Drupal installation found, exiting!"
     exit 1
 fi
 
-cd "${DRUPAL_ROOT}"
+cd "${TARGET}"
 
 set +e
 drush status bootstrap | grep -q Successful
@@ -27,7 +28,7 @@ set -e
 if [ "${STATUS}" = "1" ]
 then
     drush site-install standard -y \
-        --db-url="mysql://${DRUPAL_DATABASE_USER}:${DRUPAL_DATABASE_PASSWORD}@${DRUPAL_DATABASE_HOST}/${DRUPAL_DATABASE_NAME}" \
+        --db-url="${DRUPAL_DATABASE_DSN}" \
         --site-name="${DRUPAL_SITE}" \
         --account-name="${DRUPAL_USERNAME}" \
         --account-pass="${DRUPAL_PASSWORD}"
