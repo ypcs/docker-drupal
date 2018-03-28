@@ -38,7 +38,7 @@ RUN \
 
 COPY download.sh /usr/local/sbin/drupal-download
 COPY drupal-permissions.sh /usr/local/sbin/drupal-permissions
-COPY drupal-setup.sh /usr/local/sbin/drupal-setup
+COPY install.sh /usr/local/sbin/drupal-install
 
 RUN \
     /usr/local/sbin/drupal-download /opt/drupal
