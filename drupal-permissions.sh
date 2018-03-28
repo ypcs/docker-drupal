@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-DOCUMENT_ROOT="${DOCUMENT_ROOT:-/var/www/html}"
+DOCUMENT_ROOT="${1:-${DOCUMENT_ROOT:-/var/www/html}}"
 
 echo "Change file ownership to root:www-data."
 find "${DOCUMENT_ROOT}" -exec chown root:www-data '{}' \;
