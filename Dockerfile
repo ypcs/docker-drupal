@@ -37,7 +37,7 @@ RUN \
     chmod +x /usr/local/bin/drush
 
 COPY download.sh /usr/local/sbin/drupal-download
-COPY drupal-permissions.sh /usr/local/sbin/drupal-permissions
+COPY permissions.sh /usr/local/sbin/drupal-permissions
 COPY install.sh /usr/local/sbin/drupal-install
 
 RUN \
