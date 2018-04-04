@@ -15,9 +15,9 @@ find "${TARGET}" -type d -exec chmod 0755 '{}' \;
 find "${TARGET}" -type f -exec chmod 0644 '{}' \;
 
 echo "Add write permissions to user content."
-find "${TARGET}/sites" -type d -name files -exec chmod 0770 '{}' \;
-find "${TARGET}/sites" -type d -path '*/files/*' -exec chmod 0770 '{}' \;
-find "${TARGET}/sites" -type f -path '*/files/*' -exec chmod 0660 '{}' \;
+find "${TARGET}/sites/default" -type d -name files -exec chmod 0770 '{}' \;
+find "${TARGET}/sites/defaul/files" -type d -exec chmod 0770 '{}' \;
+find "${TARGET}/sites/default/files" -type f -exec chmod 0660 '{}' \;
 
 # needed by civicrm
 find "${TARGET}/sites" -maxdepth 1 -type d -name default -exec chmod 0770 '{}' \;
