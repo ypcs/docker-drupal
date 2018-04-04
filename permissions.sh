@@ -5,6 +5,8 @@ TARGET="${1}"
 [ -z "${TARGET}" ] && echo "missing target directory!" && exit 1
 [ ! -d "${TARGET}" ] && echo "target directory does not exist!" && exit 1
 
+mkdir -p "${TARGET}/sites/default/files"
+
 echo "Change file ownership to root:www-data."
 find "${TARGET}" -exec chown root:www-data '{}' \;
 
