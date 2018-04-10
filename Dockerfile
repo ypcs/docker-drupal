@@ -30,11 +30,7 @@ RUN \
     echo "${DRUSH_SHA256} /usr/local/bin/drush" |sha256sum -c - && \
     chmod +x /usr/local/bin/drush
 
-COPY download.sh /usr/local/sbin/drupal-download
 COPY permissions.sh /usr/local/sbin/drupal-permissions
-COPY install.sh /usr/local/sbin/drupal-install
 
 RUN echo "Source: https://github.com/ypcs/docker-drupal\nBuild date: $(date --iso-8601=ns)" >/README
 
-ENV DRUPAL_DATABASE_DSN mysql://drupal:drupal@db/drupal
-ENV DRUPAL_VERSION 7.x
