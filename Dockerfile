@@ -7,7 +7,8 @@ ENV DRUSH_VERSION 8.1.17
 ENV DRUSH_SHA256 9c5b245c3a437851bded21fd52014dddd1f5eb8f3e9ee8230047533bd02829ba
 
 RUN \
-    /usr/local/sbin/docker-upgrade && \
+    /usr/lib/docker-helpers/apt-setup && \
+    /usr/lib/docker-helpers/apt-upgrade && \
     apt-get --assume-yes install \
         curl \
         php-zip \
@@ -23,7 +24,7 @@ RUN \
         php${PHP_VERSION}-mysql \
         php${PHP_VERSION}-soap \
         php${PHP_VERSION}-xml && \
-    /usr/local/sbin/docker-cleanup
+    /usr/lib/docker-helpers/apt-cleanup
 
 RUN \
     curl -fSL "https://github.com/drush-ops/drush/releases/download/${DRUSH_VERSION}/drush.phar" -o /usr/local/bin/drush && \
