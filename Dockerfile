@@ -37,4 +37,4 @@ COPY install.sh /usr/local/sbin/drupal-install
 RUN echo "Source: https://github.com/ypcs/docker-drupal\nBuild date: $(date --iso-8601=ns)" >/README
 
 ENV DRUPAL_DATABASE_DSN mysql://drupal:drupal@db/drupal
-ENV DRUPAL_VERSION 7.x
+ENV DRUPAL_VERSION 8.x
