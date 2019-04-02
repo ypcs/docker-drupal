@@ -3,8 +3,8 @@ FROM ypcs/php:7.2
 ARG VCS_REF
 LABEL org.label-schema.vcs-ref=$VCS_REF
 
-ENV DRUSH_VERSION 8.1.17
-ENV DRUSH_SHA256 9c5b245c3a437851bded21fd52014dddd1f5eb8f3e9ee8230047533bd02829ba
+ENV DRUSH_VERSION 8.2.2
+ENV DRUSH_SHA256 c7f1cb5e03213d8dbbec30b71f50fd205bbe29d11f612427901850c378917401
 
 RUN \
     /usr/lib/docker-helpers/apt-setup && \
