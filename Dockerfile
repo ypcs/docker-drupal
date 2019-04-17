@@ -1,4 +1,4 @@
-FROM ypcs/php:7.2
+FROM ypcs/php:7.3
 
 ARG VCS_REF
 LABEL org.label-schema.vcs-ref=$VCS_REF
